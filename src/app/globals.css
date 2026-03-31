@@ -1,0 +1,212 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --text-muted: #78716c;
+  --border: #e7e5e4;
+  --accent: #292524;
+  --accent-hover: #44403c;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --check: #16a34a;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+h1 span {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 12px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.form input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form input::placeholder {
+  color: var(--text-muted);
+}
+
+.form input:focus {
+  border-color: var(--accent);
+}
+
+.form button {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.form button:hover {
+  background: var(--accent-hover);
+}
+
+/* Task list */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.15s, opacity 0.2s;
+}
+
+.task-item:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Checkbox */
+.checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  background: transparent;
+  padding: 0;
+}
+
+.checkbox:hover {
+  border-color: var(--check);
+}
+
+.checkbox.checked {
+  background: var(--check);
+  border-color: var(--check);
+}
+
+.checkbox svg {
+  width: 14px;
+  height: 14px;
+  stroke: #fff;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* Task text */
+.task-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: all 0.2s;
+}
+
+.task-text.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: var(--danger);
+  background: #fef2f2;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item {
+  animation: slideIn 0.2s ease-out;
+}
